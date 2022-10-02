@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { Button, Link } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import { brandAtom } from '../../../store/brand';
+import { brandAtom } from "../../../store/brand";
 
 interface LinkButton {
   children: string | React.ReactNode;
@@ -16,7 +16,17 @@ function LinkButton({ children, href }: LinkButton) {
   }
 
   return (
-    <Button onClick={onClick} size="lg" w="100%" textColor={brand.linkColor}>
+    <Button
+      onClick={onClick}
+      size="lg"
+      w="100%"
+      textColor={brand.buttonTextColor}
+      backgroundColor={brand.buttonColor}
+      _hover={{ bg: brand.buttonColor }}
+      _active={{
+        bg: brand.buttonColor,
+      }}
+    >
       {children}
     </Button>
   );
