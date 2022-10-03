@@ -1,7 +1,11 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider, useAtom } from "jotai";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  extendTheme,
+  type ThemeConfig,
+} from "@chakra-ui/react";
 import { brandAtom } from "../src/store/brand";
 import Layout from "../src/flat/Layout";
 
@@ -17,8 +21,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 function ChakraWrapperProvider({ children }: any) {
   const [brand] = useAtom(brandAtom);
-  console.log("brand.backgroundColor", brand.backgroundColor);
+  const config: ThemeConfig = {
+    initialColorMode: "dark",
+    useSystemColorMode: false,
+  };
+
   const theme = extendTheme({
+    ...config,
     colors: {
       brand: {
         100: "#f7fafc",
