@@ -48,7 +48,6 @@ function Create() {
     let errorMessage = Object.values(errors).map((error) => {
       return error?.message;
     });
-    console.log("errorMessage", errorMessage);
     if (errorMessage.length > 0) {
       toast({
         title: "Error",
@@ -117,7 +116,13 @@ function Create() {
     formData.append("linkedin_url", linkedinUrl);
     formData.append(
       "color_palette",
-      JSON.stringify({ background_color: backgroundColor })
+      JSON.stringify({
+        background_color: backgroundColor,
+        text_color: textColor,
+        link_color: linkColor,
+        button_color: buttonColor,
+        button_text_color: buttonTextColor,
+      })
     );
 
     if (!avatar || !name || !username) {
