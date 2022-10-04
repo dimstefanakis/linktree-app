@@ -1,9 +1,11 @@
 import "../styles/globals.css";
+import { useEffect } from "react";
 import type { AppProps } from "next/app";
 import { Provider, useAtom } from "jotai";
 import {
   ChakraProvider,
   extendTheme,
+  useColorMode,
   type ThemeConfig,
 } from "@chakra-ui/react";
 import { brandAtom } from "../src/store/brand";
@@ -20,11 +22,22 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 function ChakraWrapperProvider({ children }: any) {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [brand] = useAtom(brandAtom);
   const config: ThemeConfig = {
     initialColorMode: "dark",
     useSystemColorMode: false,
   };
+
+  function forceDarkMode() {
+    if (colorMode === "light") {
+      toggleColorMode();
+    }
+  }
+
+  useEffect(() => {
+    forceDarkMode();
+  }, [colorMode, forceDarkMode]);
 
   const theme = extendTheme({
     ...config,
