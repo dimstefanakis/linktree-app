@@ -193,7 +193,7 @@ function Create() {
       </Box>
       <VStack>
         <InputGroup size="sm">
-          <InputLeftAddon>https://linktree.com/</InputLeftAddon>
+          <InputLeftAddon>https://linktree-app.onrender.com/</InputLeftAddon>
           <Input placeholder="mylinktree" {...register("username")} />
         </InputGroup>
         <Input placeholder="Brand Name" {...register("name")} />
